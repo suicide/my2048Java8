@@ -27,29 +27,29 @@ import java.util.stream.IntStream;
  */
 public class Field {
 
-  private final List<List<Cell>> field;
+  private final List<Cell> field;
 
   public static final int size = 4;
 
   public Field() {
 
-    field = new ArrayList<>();
+    field = new ArrayList<>(size * size);
 
-    IntStream.range(0, size).forEach(i -> {
-      field.add(IntStream.range(0, size).collect(ArrayList::new, (l, j) -> l.add(CellFactory.getCell(0)), ArrayList::addAll));
+    IntStream.range(0, size * size).forEach(i -> {
+      field.add(CellFactory.getCell(0));
     });
 
   }
 
   public Cell get(int x, int y) {
     check(x, y);
-    return field.get(x).get(y);
+    return field.get(x*size + y);
   }
 
   public void set(int x, int y, Cell cell) {
     check(x, y);
 
-    field.get(x).set(y, cell);
+    field.set(x *size + y, cell);
   }
 
   private void check(int x, int y) {
@@ -63,4 +63,20 @@ public class Field {
     }
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Field field1 = (Field) o;
+
+    if (field != null ? !field.equals(field1.field) : field1.field != null) return false;
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    return field != null ? field.hashCode() : 0;
+  }
 }
