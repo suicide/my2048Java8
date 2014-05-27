@@ -85,10 +85,7 @@ public class Board {
       }
     }
 
-    int fillUp = Field.size - newRow.size();
-    for (int i = 0; i < fillUp; i++) {
-      newRow.add(CellFactory.getCell(0));
-    }
+    fillUp(newRow);
 
     return newRow;
 
@@ -123,16 +120,20 @@ public class Board {
       newRow.add(previous);
     }
 
-    int fillUp = Field.size - newRow.size();
-    for (int i = 0; i < fillUp; i++) {
-      newRow.add(CellFactory.getCell(0));
-    }
+    fillUp(newRow);
 
 
     if (row.equals(newRow)) {
       return newRow;
     } else {
       return slide(newRow);
+    }
+  }
+
+  private void fillUp(List<Cell> row) {
+    int fillUp = Field.size - row.size();
+    for (int i = 0; i < fillUp; i++) {
+      row.add(CellFactory.getCell(0));
     }
   }
 
