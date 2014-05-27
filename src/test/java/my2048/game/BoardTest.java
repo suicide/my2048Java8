@@ -26,14 +26,14 @@ import java.util.stream.IntStream;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class PlayingFieldTest {
+public class BoardTest {
 
-  private PlayingField playingField;
+  private Board board;
 
   @Before
   public void setUp() throws Exception {
 
-    playingField = new PlayingField();
+    board = new Board();
 
   }
 
@@ -43,19 +43,19 @@ public class PlayingFieldTest {
   }
 
   @Test
-  public void testCrushEmpty() throws Exception {
+  public void testLineMoveEmpty() throws Exception {
 
     List<Cell> row = IntStream.range(0, Field.size)
       .collect(ArrayList::new, (list, i) -> list.add(CellFactory.getCell(0)), ArrayList::addAll);
 
-    List<Cell> result = playingField.crush(row);
+    List<Cell> result = board.lineMove(row);
 
     assertThat(result, is(equalTo(row)));
 
   }
 
   @Test
-  public void testCrushSingleAtBeginning() throws Exception {
+  public void testLineMoveSingleAtBeginning() throws Exception {
 
     List<Cell> row = new ArrayList<>();
     row.add(CellFactory.getCell(2));
@@ -63,7 +63,7 @@ public class PlayingFieldTest {
     row.add(CellFactory.getCell(0));
     row.add(CellFactory.getCell(0));
 
-    List<Cell> result = playingField.crush(row);
+    List<Cell> result = board.lineMove(row);
 
     assertThat(result, is(equalTo(row)));
 
@@ -71,7 +71,7 @@ public class PlayingFieldTest {
 
 
   @Test
-  public void testCrushSingleAt2nd() throws Exception {
+  public void testLineMoveSingleAt2nd() throws Exception {
 
     List<Cell> row = new ArrayList<>();
     row.add(CellFactory.getCell(0));
@@ -85,14 +85,14 @@ public class PlayingFieldTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = playingField.crush(row);
+    List<Cell> result = board.lineMove(row);
 
     assertThat(result, is(equalTo(target)));
 
   }
 
   @Test
-  public void testCrush2Separated() throws Exception {
+  public void testLineMove2Separated() throws Exception {
 
     List<Cell> row = new ArrayList<>();
     row.add(CellFactory.getCell(0));
@@ -106,7 +106,7 @@ public class PlayingFieldTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = playingField.crush(row);
+    List<Cell> result = board.lineMove(row);
 
     assertThat(result, is(equalTo(target)));
 
@@ -114,7 +114,7 @@ public class PlayingFieldTest {
 
 
   @Test
-  public void testCrushMerge2Simple() throws Exception {
+  public void testLineMoveMerge2Simple() throws Exception {
 
     List<Cell> row = new ArrayList<>();
     row.add(CellFactory.getCell(2));
@@ -128,14 +128,14 @@ public class PlayingFieldTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = playingField.crush(row);
+    List<Cell> result = board.lineMove(row);
 
     assertThat(result, is(equalTo(target)));
 
   }
 
   @Test
-  public void testCrushMerge2End() throws Exception {
+  public void testLineMoveMerge2End() throws Exception {
 
     List<Cell> row = new ArrayList<>();
     row.add(CellFactory.getCell(0));
@@ -149,7 +149,7 @@ public class PlayingFieldTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = playingField.crush(row);
+    List<Cell> result = board.lineMove(row);
 
     assertThat(result, is(equalTo(target)));
 
@@ -157,7 +157,7 @@ public class PlayingFieldTest {
 
 
   @Test
-  public void testCrushMerge2Separated() throws Exception {
+  public void testLineMoveMerge2Separated() throws Exception {
 
     List<Cell> row = new ArrayList<>();
     row.add(CellFactory.getCell(0));
@@ -171,7 +171,7 @@ public class PlayingFieldTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = playingField.crush(row);
+    List<Cell> result = board.lineMove(row);
 
     assertThat(result, is(equalTo(target)));
 
@@ -179,7 +179,7 @@ public class PlayingFieldTest {
 
 
   @Test
-  public void testCrushMerge3Separated() throws Exception {
+  public void testLineMoveMerge3Separated() throws Exception {
 
     List<Cell> row = new ArrayList<>();
     row.add(CellFactory.getCell(0));
@@ -193,7 +193,7 @@ public class PlayingFieldTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = playingField.crush(row);
+    List<Cell> result = board.lineMove(row);
 
     assertThat(result, is(equalTo(target)));
 
@@ -201,7 +201,7 @@ public class PlayingFieldTest {
 
 
   @Test
-  public void testCrushMerge4Separated() throws Exception {
+  public void testLineMoveMerge4Separated() throws Exception {
 
     List<Cell> row = new ArrayList<>();
     row.add(CellFactory.getCell(2));
@@ -215,7 +215,7 @@ public class PlayingFieldTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = playingField.crush(row);
+    List<Cell> result = board.lineMove(row);
 
     assertThat(result, is(equalTo(target)));
 

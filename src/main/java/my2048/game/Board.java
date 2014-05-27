@@ -25,7 +25,7 @@ import java.util.stream.IntStream;
  *
  * @author Patrick Sy (patrick.sy@get-it.us)
  */
-public class PlayingField {
+public class Board {
 
 
   private Field field;
@@ -67,13 +67,13 @@ public class PlayingField {
     return null;
   }
 
-  List<Cell> crush(List<Cell> row) {
-    List<Cell> newRow = doCrush(row);
+  List<Cell> lineMove(List<Cell> row) {
+    List<Cell> newRow = slide(row);
 
     return merge(newRow);
   }
 
-  private List<Cell> doCrush(List<Cell> row) {
+  private List<Cell> slide(List<Cell> row) {
 
     List<Cell> newRow = new ArrayList<>();
 
@@ -132,7 +132,7 @@ public class PlayingField {
     if (row.equals(newRow)) {
       return newRow;
     } else {
-      return doCrush(newRow);
+      return slide(newRow);
     }
   }
 
