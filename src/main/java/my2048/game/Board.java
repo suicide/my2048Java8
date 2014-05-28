@@ -83,30 +83,6 @@ public class Board {
   }
 
   RowChange lineMove(List<Cell> row) {
-    List<Cell> newRow = slide(row);
-
-    return merge(newRow);
-  }
-
-  private List<Cell> slide(List<Cell> row) {
-
-    List<Cell> newRow = new ArrayList<>();
-
-
-    for (Cell cell : row) {
-
-      if (cell.getValue() != 0) {
-        newRow.add(cell);
-      }
-    }
-
-    fillUp(newRow);
-
-    return newRow;
-
-  }
-
-  private RowChange merge(List<Cell> row) {
     List<Cell> newRow = new ArrayList<>();
 
     Cell previous = null;
