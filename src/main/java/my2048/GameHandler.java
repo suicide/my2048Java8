@@ -16,10 +16,70 @@
 
 package my2048;
 
+import my2048.game.Board;
+import my2048.game.Direction;
+import my2048.output.Renderer;
+
+import java.util.Scanner;
+
 /**
  * TODO: Comment
  *
  * @author Patrick Sy (patrick.sy@get-it.us)
  */
 public class GameHandler {
+
+  public void play() {
+
+    Renderer renderer = new Renderer();
+
+    Board board = new Board();
+
+    Scanner scanner = new Scanner(System.in);
+
+    renderer.render(board.getField());
+
+    while(true) {
+
+      System.out.println("What direction now?");
+      String key = scanner.next();
+
+      Direction d = mapDirection(key);
+
+      renderer.render(board.move(d));
+    }
+
+  }
+
+  private Direction mapDirection(String key) {
+
+    Direction direction;
+
+    switch (key) {
+      case "w":
+        direction = Direction.UP;
+        break;
+      case "a":
+        direction = Direction.LEFT;
+        break;
+      case "s":
+        direction = Direction.DOWN;
+        break;
+      case "d":
+        direction = Direction.RIGHT;
+        break;
+      default:
+        throw new InvalidKeyException(key + " is not a valid direction");
+    }
+
+    return direction;
+  }
+
+  private static class InvalidKeyException extends RuntimeException {
+
+    private InvalidKeyException(String message) {
+      super(message);
+    }
+  }
+
 }

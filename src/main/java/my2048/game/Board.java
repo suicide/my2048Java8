@@ -18,6 +18,7 @@ package my2048.game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 /**
@@ -30,9 +31,13 @@ public class Board {
 
   private Field field;
 
+  public Board() {
+    init();
+  }
+
   private void init() {
 
-    field = new Field();
+    field = spawnRandom(spawnRandom(new Field()));
 
   }
 
@@ -42,9 +47,7 @@ public class Board {
 
   public Field move(Direction direction) {
 
-    Field newField = new Field();
-
-    newField = doMove(newField, direction);
+    Field newField = doMove(field, direction);
 
     field = spawnRandom(newField);
 
@@ -53,18 +56,27 @@ public class Board {
   }
 
   private Field doMove(Field field, Direction direction) {
-    if (direction == Direction.LEFT) {
+    Field newField = new Field();
 
-      IntStream.range(0, Field.size).forEach(x -> {
-        List<Cell> cells = IntStream.range(0, Field.size).collect(ArrayList::new,
-          (list, y) -> list.add(field.get(x, y)), ArrayList::addAll);
+    List<Tuple> coordinates = CoordinatesGenerator.coordinates(direction);
 
 
-      });
+    for (int i = 0; i < Field.size; i++) {
+      List<Cell> row = new ArrayList<>();
+      for (int j = 0; j < Field.size; j++) {
+        Tuple t = coordinates.get(i * Field.size + j);
+        row.add(field.get(t.x, t.y));
+      }
 
+      List<Cell> newRow = lineMove(row);
+
+      for (int j = 0; j < Field.size; j++) {
+        Tuple t = coordinates.get(i * Field.size + j);
+        newField.set(t.x, t.y, newRow.get(j));
+      }
     }
 
-    return null;
+    return newField;
   }
 
   List<Cell> lineMove(List<Cell> row) {
@@ -138,9 +150,35 @@ public class Board {
   }
 
   private Field spawnRandom(Field field) {
-    return null;
+
+    List<Tuple> emptyFields = new ArrayList<>();
+
+    for (int x = 0; x < Field.size; x++) {
+      for (int y = 0; y < Field.size; y++) {
+        Cell cell = field.get(x, y);
+        if (cell.getValue() == 0) {
+          emptyFields.add(new Tuple(x, y));
+        }
+      }
+    }
+
+    Random r = new Random();
+    int index = r.nextInt(emptyFields.size());
+
+    int val = (r.nextInt(2) + 1) * 2;
+
+    field.set(emptyFields.get(index).x, emptyFields.get(index).y, CellFactory.getCell(val));
+
+    return field;
   }
 
 
+  private static class RowChange {
+
+    private List<Cell> row;
+
+    private int score = 0;
+
+  }
 
 }

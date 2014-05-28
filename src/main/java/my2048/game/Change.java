@@ -14,19 +14,12 @@
  * limitations under the License.
  */
 
-package my2048;
+package my2048.game;
 
 /**
  * TODO: Comment
  *
  * @author Patrick Sy (patrick.sy@get-it.us)
  */
-public class Application {
-
-  public static void main(String[] args) {
-
-    new GameHandler().play();
-
-  }
-
+public interface Change {
 }

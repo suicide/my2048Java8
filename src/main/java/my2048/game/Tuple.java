@@ -14,19 +14,26 @@
  * limitations under the License.
  */
 
-package my2048;
+package my2048.game;
 
 /**
  * TODO: Comment
  *
  * @author Patrick Sy (patrick.sy@get-it.us)
  */
-public class Application {
+public class Tuple {
 
-  public static void main(String[] args) {
+  public final int x;
 
-    new GameHandler().play();
+  public final int y;
 
+  public Tuple(int x, int y) {
+    this.x = x;
+    this.y = y;
   }
 
+  @Override
+  public String toString() {
+    return "(" + x + "," + y + ")";
+  }
 }

@@ -14,18 +14,33 @@
  * limitations under the License.
  */
 
-package my2048;
+package my2048.output;
+
+import my2048.game.Field;
 
 /**
  * TODO: Comment
  *
  * @author Patrick Sy (patrick.sy@get-it.us)
  */
-public class Application {
+public class Renderer {
 
-  public static void main(String[] args) {
+  public void render(Field field) {
 
-    new GameHandler().play();
+    String separator = "-------------------------------------";
+    System.out.println(separator);
+
+    for (int x = 0; x < Field.size; x++) {
+      Integer[] row = new Integer[Field.size];
+      for (int y = 0; y < Field.size; y++) {
+
+        row[y] = field.get(x, y).getValue();
+
+      }
+
+      System.out.printf("| %6d | %6d | %6d | %6d |\n", row);
+      System.out.println(separator);
+    }
 
   }
 
