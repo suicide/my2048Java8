@@ -21,5 +21,35 @@ package my2048.game;
  *
  * @author Patrick Sy (patrick.sy@get-it.us)
  */
-public interface Change {
+public class Change {
+
+  private Field field;
+
+  private int score = 0;
+
+  private boolean changed;
+
+  public Field getField() {
+    return field;
+  }
+
+  public void setField(Field field) {
+    this.field = field;
+  }
+
+  public int getScore() {
+    return score;
+  }
+
+  public void setScore(int score) {
+    this.score = score;
+  }
+
+  public boolean isChanged() {
+    return changed;
+  }
+
+  public void setChanged(boolean changed) {
+    this.changed = changed;
+  }
 }

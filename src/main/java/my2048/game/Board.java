@@ -45,22 +45,26 @@ public class Board {
     return field;
   }
 
-  public Field move(Direction direction) {
+  public Change move(Direction direction) {
 
-    Field newField = doMove(field, direction);
+    Change change = doMove(field, direction);
 
-    field = spawnRandom(newField);
+    if (change.isChanged()) {
+      field = spawnRandom(change.getField());
+      change.setField(field);
+    }
 
-    return field;
+    return change;
 
   }
 
-  private Field doMove(Field field, Direction direction) {
+  private Change doMove(Field field, Direction direction) {
     Field newField = new Field();
 
     List<Tuple> coordinates = CoordinatesGenerator.coordinates(direction);
 
     int score = 0;
+    boolean changed = false;
 
     for (int i = 0; i < Field.size; i++) {
       List<Cell> row = new ArrayList<>();
@@ -72,6 +76,7 @@ public class Board {
       RowChange rowChange = lineMove(row);
       List<Cell> newRow = rowChange.getRow();
       score += rowChange.getScore();
+      changed |= rowChange.isChanged();
 
       for (int j = 0; j < Field.size; j++) {
         Tuple t = coordinates.get(i * Field.size + j);
@@ -79,7 +84,12 @@ public class Board {
       }
     }
 
-    return newField;
+    Change change = new Change();
+    change.setChanged(changed);
+    change.setScore(score);
+    change.setField(newField);
+
+    return change;
   }
 
   RowChange lineMove(List<Cell> row) {
@@ -119,9 +129,7 @@ public class Board {
     RowChange change = new RowChange();
     change.setRow(newRow);
     change.setScore(score);
-
     change.setChanged(!row.equals(newRow));
-
 
     return change;
   }

@@ -25,7 +25,7 @@ import my2048.game.Field;
  */
 public class Renderer {
 
-  public void render(Field field) {
+  public void render(Field field, int score) {
 
     String separator = "-------------------------------------";
     System.out.println(separator);
@@ -41,6 +41,7 @@ public class Renderer {
       System.out.printf("| %6d | %6d | %6d | %6d |\n", row);
       System.out.println(separator);
     }
+    System.out.println("Score: " + score);
 
   }
 
