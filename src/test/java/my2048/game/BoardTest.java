@@ -48,9 +48,9 @@ public class BoardTest {
     List<Cell> row = IntStream.range(0, Field.size)
       .collect(ArrayList::new, (list, i) -> list.add(CellFactory.getCell(0)), ArrayList::addAll);
 
-    List<Cell> result = board.lineMove(row);
+    Board.RowChange result = board.lineMove(row);
 
-    assertThat(result, is(equalTo(row)));
+    assertThat(result.getRow(), is(equalTo(row)));
 
   }
 
@@ -63,9 +63,9 @@ public class BoardTest {
     row.add(CellFactory.getCell(0));
     row.add(CellFactory.getCell(0));
 
-    List<Cell> result = board.lineMove(row);
+    Board.RowChange result = board.lineMove(row);
 
-    assertThat(result, is(equalTo(row)));
+    assertThat(result.getRow(), is(equalTo(row)));
 
   }
 
@@ -85,9 +85,9 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = board.lineMove(row);
+    Board.RowChange result = board.lineMove(row);
 
-    assertThat(result, is(equalTo(target)));
+    assertThat(result.getRow(), is(equalTo(target)));
 
   }
 
@@ -106,9 +106,9 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = board.lineMove(row);
+    Board.RowChange result = board.lineMove(row);
 
-    assertThat(result, is(equalTo(target)));
+    assertThat(result.getRow(), is(equalTo(target)));
 
   }
 
@@ -128,9 +128,9 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = board.lineMove(row);
+    Board.RowChange result = board.lineMove(row);
 
-    assertThat(result, is(equalTo(target)));
+    assertThat(result.getRow(), is(equalTo(target)));
 
   }
 
@@ -149,9 +149,9 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = board.lineMove(row);
+    Board.RowChange result = board.lineMove(row);
 
-    assertThat(result, is(equalTo(target)));
+    assertThat(result.getRow(), is(equalTo(target)));
 
   }
 
@@ -171,9 +171,9 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = board.lineMove(row);
+    Board.RowChange result = board.lineMove(row);
 
-    assertThat(result, is(equalTo(target)));
+    assertThat(result.getRow(), is(equalTo(target)));
 
   }
 
@@ -193,9 +193,9 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = board.lineMove(row);
+    Board.RowChange result = board.lineMove(row);
 
-    assertThat(result, is(equalTo(target)));
+    assertThat(result.getRow(), is(equalTo(target)));
 
   }
 
@@ -215,9 +215,9 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    List<Cell> result = board.lineMove(row);
+    Board.RowChange result = board.lineMove(row);
 
-    assertThat(result, is(equalTo(target)));
+    assertThat(result.getRow(), is(equalTo(target)));
 
   }
 }

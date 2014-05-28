@@ -60,6 +60,7 @@ public class Board {
 
     List<Tuple> coordinates = CoordinatesGenerator.coordinates(direction);
 
+    int score = 0;
 
     for (int i = 0; i < Field.size; i++) {
       List<Cell> row = new ArrayList<>();
@@ -68,7 +69,9 @@ public class Board {
         row.add(field.get(t.x, t.y));
       }
 
-      List<Cell> newRow = lineMove(row);
+      RowChange rowChange = lineMove(row);
+      List<Cell> newRow = rowChange.getRow();
+      score += rowChange.getScore();
 
       for (int j = 0; j < Field.size; j++) {
         Tuple t = coordinates.get(i * Field.size + j);
@@ -79,7 +82,7 @@ public class Board {
     return newField;
   }
 
-  List<Cell> lineMove(List<Cell> row) {
+  RowChange lineMove(List<Cell> row) {
     List<Cell> newRow = slide(row);
 
     return merge(newRow);
@@ -103,17 +106,20 @@ public class Board {
 
   }
 
-  private List<Cell> merge(List<Cell> row) {
+  private RowChange merge(List<Cell> row) {
     List<Cell> newRow = new ArrayList<>();
 
     Cell previous = null;
+    int score = 0;
 
     for (Cell cell : row) {
 
       if (cell.getValue() != 0) {
 
         if (cell.equals(previous) && cell.getValue() != 0) {
-          newRow.add(CellFactory.getCell(cell.getValue() * 2));
+          Cell newCell = CellFactory.getCell(cell.getValue() * 2);
+          newRow.add(newCell);
+          score += newCell.getValue();
 
           previous = null;
         } else {
@@ -134,12 +140,12 @@ public class Board {
 
     fillUp(newRow);
 
+    RowChange change = new RowChange();
+    change.setRow(newRow);
+    change.setScore(score);
 
-    if (row.equals(newRow)) {
-      return newRow;
-    } else {
-      return slide(newRow);
-    }
+
+    return change;
   }
 
   private void fillUp(List<Cell> row) {
@@ -173,12 +179,27 @@ public class Board {
   }
 
 
-  private static class RowChange {
+  static class RowChange {
 
     private List<Cell> row;
 
     private int score = 0;
 
+    public List<Cell> getRow() {
+      return row;
+    }
+
+    public void setRow(List<Cell> row) {
+      this.row = row;
+    }
+
+    public int getScore() {
+      return score;
+    }
+
+    public void setScore(int score) {
+      this.score = score;
+    }
   }
 
 }
