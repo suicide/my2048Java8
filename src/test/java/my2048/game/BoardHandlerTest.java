@@ -26,14 +26,14 @@ import java.util.stream.IntStream;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class BoardTest {
+public class BoardHandlerTest {
 
-  private Board board;
+  private BoardHandler boardHandler;
 
   @Before
   public void setUp() throws Exception {
 
-    board = new Board();
+    boardHandler = new BoardHandler();
 
   }
 
@@ -45,10 +45,10 @@ public class BoardTest {
   @Test
   public void testLineMoveEmpty() throws Exception {
 
-    List<Cell> row = IntStream.range(0, Field.size)
+    List<Cell> row = IntStream.range(0, Board.size)
       .collect(ArrayList::new, (list, i) -> list.add(CellFactory.getCell(0)), ArrayList::addAll);
 
-    Board.RowChange result = board.lineMove(row);
+    BoardHandler.RowChange result = boardHandler.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(row)));
     assertThat(result.getScore(), is(equalTo(0)));
@@ -65,7 +65,7 @@ public class BoardTest {
     row.add(CellFactory.getCell(0));
     row.add(CellFactory.getCell(0));
 
-    Board.RowChange result = board.lineMove(row);
+    BoardHandler.RowChange result = boardHandler.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(row)));
     assertThat(result.getScore(), is(equalTo(0)));
@@ -89,7 +89,7 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    Board.RowChange result = board.lineMove(row);
+    BoardHandler.RowChange result = boardHandler.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
     assertThat(result.getScore(), is(equalTo(0)));
@@ -112,7 +112,7 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    Board.RowChange result = board.lineMove(row);
+    BoardHandler.RowChange result = boardHandler.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
     assertThat(result.getScore(), is(equalTo(0)));
@@ -136,7 +136,7 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    Board.RowChange result = board.lineMove(row);
+    BoardHandler.RowChange result = boardHandler.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
     assertThat(result.getScore(), is(equalTo(4)));
@@ -159,7 +159,7 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    Board.RowChange result = board.lineMove(row);
+    BoardHandler.RowChange result = boardHandler.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
     assertThat(result.getScore(), is(equalTo(4)));
@@ -183,7 +183,7 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    Board.RowChange result = board.lineMove(row);
+    BoardHandler.RowChange result = boardHandler.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
     assertThat(result.getScore(), is(equalTo(4)));
@@ -207,7 +207,7 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    Board.RowChange result = board.lineMove(row);
+    BoardHandler.RowChange result = boardHandler.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
     assertThat(result.getScore(), is(equalTo(4)));
@@ -231,7 +231,7 @@ public class BoardTest {
     target.add(CellFactory.getCell(0));
     target.add(CellFactory.getCell(0));
 
-    Board.RowChange result = board.lineMove(row);
+    BoardHandler.RowChange result = boardHandler.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
     assertThat(result.getScore(), is(equalTo(8)));

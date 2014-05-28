@@ -16,7 +16,7 @@
 
 package my2048.output;
 
-import my2048.game.Field;
+import my2048.game.Board;
 
 /**
  * TODO: Comment
@@ -25,16 +25,16 @@ import my2048.game.Field;
  */
 public class Renderer {
 
-  public void render(Field field, int score) {
+  public void render(Board board, int score) {
 
     String separator = "-------------------------------------";
     System.out.println(separator);
 
-    for (int x = 0; x < Field.size; x++) {
-      Integer[] row = new Integer[Field.size];
-      for (int y = 0; y < Field.size; y++) {
+    for (int x = 0; x < Board.size; x++) {
+      Integer[] row = new Integer[Board.size];
+      for (int y = 0; y < Board.size; y++) {
 
-        row[y] = field.get(x, y).getValue();
+        row[y] = board.get(x, y).getValue();
 
       }
 

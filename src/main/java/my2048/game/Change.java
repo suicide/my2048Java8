@@ -23,18 +23,18 @@ package my2048.game;
  */
 public class Change {
 
-  private Field field;
+  private Board board;
 
   private int score = 0;
 
   private boolean changed;
 
-  public Field getField() {
-    return field;
+  public Board getBoard() {
+    return board;
   }
 
-  public void setField(Field field) {
-    this.field = field;
+  public void setBoard(Board board) {
+    this.board = board;
   }
 
   public int getScore() {

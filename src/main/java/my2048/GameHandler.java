@@ -16,7 +16,7 @@
 
 package my2048;
 
-import my2048.game.Board;
+import my2048.game.BoardHandler;
 import my2048.game.Change;
 import my2048.game.Direction;
 import my2048.output.Renderer;
@@ -34,15 +34,15 @@ public class GameHandler {
 
     Renderer renderer = new Renderer();
 
-    Board board = new Board();
+    BoardHandler boardHandler = new BoardHandler();
 
     Scanner scanner = new Scanner(System.in);
 
     int score = 0;
 
     renderer.render(new Change() {{
-      setField(board.getField());
-    }}.getField(), score);
+      setBoard(boardHandler.getBoard());
+    }}.getBoard(), score);
 
     while (true) {
 
@@ -51,14 +51,14 @@ public class GameHandler {
 
       Direction d = mapDirection(key);
 
-      Change change = board.move(d);
+      Change change = boardHandler.move(d);
 
       if (!change.isChanged()) {
         continue;
       }
       score += change.getScore();
 
-      renderer.render(change.getField(), score);
+      renderer.render(change.getBoard(), score);
     }
 
   }
