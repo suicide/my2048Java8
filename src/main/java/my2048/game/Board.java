@@ -120,6 +120,8 @@ public class Board {
     change.setRow(newRow);
     change.setScore(score);
 
+    change.setChanged(!row.equals(newRow));
+
 
     return change;
   }
@@ -160,6 +162,16 @@ public class Board {
     private List<Cell> row;
 
     private int score = 0;
+
+    private boolean changed = true;
+
+    public boolean isChanged() {
+      return changed;
+    }
+
+    public void setChanged(boolean changed) {
+      this.changed = changed;
+    }
 
     public List<Cell> getRow() {
       return row;
