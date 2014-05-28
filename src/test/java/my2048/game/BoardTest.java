@@ -51,6 +51,7 @@ public class BoardTest {
     Board.RowChange result = board.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(row)));
+    assertThat(result.getScore(), is(equalTo(0)));
 
   }
 
@@ -66,6 +67,7 @@ public class BoardTest {
     Board.RowChange result = board.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(row)));
+    assertThat(result.getScore(), is(equalTo(0)));
 
   }
 
@@ -88,6 +90,7 @@ public class BoardTest {
     Board.RowChange result = board.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
+    assertThat(result.getScore(), is(equalTo(0)));
 
   }
 
@@ -109,6 +112,7 @@ public class BoardTest {
     Board.RowChange result = board.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
+    assertThat(result.getScore(), is(equalTo(0)));
 
   }
 
@@ -131,6 +135,7 @@ public class BoardTest {
     Board.RowChange result = board.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
+    assertThat(result.getScore(), is(equalTo(4)));
 
   }
 
@@ -152,6 +157,7 @@ public class BoardTest {
     Board.RowChange result = board.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
+    assertThat(result.getScore(), is(equalTo(4)));
 
   }
 
@@ -174,6 +180,7 @@ public class BoardTest {
     Board.RowChange result = board.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
+    assertThat(result.getScore(), is(equalTo(4)));
 
   }
 
@@ -196,6 +203,7 @@ public class BoardTest {
     Board.RowChange result = board.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
+    assertThat(result.getScore(), is(equalTo(4)));
 
   }
 
@@ -218,6 +226,7 @@ public class BoardTest {
     Board.RowChange result = board.lineMove(row);
 
     assertThat(result.getRow(), is(equalTo(target)));
+    assertThat(result.getScore(), is(equalTo(8)));
 
   }
 }
