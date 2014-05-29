@@ -19,6 +19,7 @@ package my2048.game;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * TODO: Comment
@@ -97,24 +98,21 @@ public class BoardHandler {
     Cell previous = null;
     int score = 0;
 
-    for (Cell cell : row) {
+    for (Cell cell : row.stream().filter(c -> c.getValue() != 0).collect(Collectors.toList())) {
 
-      if (cell.getValue() != 0) {
+      if (cell.equals(previous)) {
+        Cell newCell = CellFactory.getCell(cell.getValue() * 2);
+        newRow.add(newCell);
+        score += newCell.getValue();
 
-        if (cell.equals(previous)) {
-          Cell newCell = CellFactory.getCell(cell.getValue() * 2);
-          newRow.add(newCell);
-          score += newCell.getValue();
+        previous = null;
+      } else {
 
-          previous = null;
-        } else {
-
-          if (previous != null) {
-            newRow.add(previous);
-          }
-          previous = cell;
-
+        if (previous != null) {
+          newRow.add(previous);
         }
+        previous = cell;
+
       }
 
     }
