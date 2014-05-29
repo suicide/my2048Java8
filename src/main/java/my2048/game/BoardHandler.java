@@ -101,7 +101,7 @@ public class BoardHandler {
 
       if (cell.getValue() != 0) {
 
-        if (cell.equals(previous) && cell.getValue() != 0) {
+        if (cell.equals(previous)) {
           Cell newCell = CellFactory.getCell(cell.getValue() * 2);
           newRow.add(newCell);
           score += newCell.getValue();
