@@ -35,29 +35,29 @@ public class CoordinatesGenerator {
 
     switch (direction) {
       case LEFT:
-        for (int x = 0; x < Board.size; x++) {
-          for (int y = 0; y < Board.size; y++) {
+        for (int x = 0; x < Board.SIZE; x++) {
+          for (int y = 0; y < Board.SIZE; y++) {
             coordinates.add(new Tuple(x,y));
           }
         }
         break;
       case RIGHT:
-        for (int x = 0; x < Board.size; x++) {
-          for (int y = Board.size - 1; y >= 0; y--) {
+        for (int x = 0; x < Board.SIZE; x++) {
+          for (int y = Board.SIZE - 1; y >= 0; y--) {
             coordinates.add(new Tuple(x, y));
           }
         }
         break;
       case UP:
-        for (int y = 0; y < Board.size; y++) {
-          for (int x = 0; x < Board.size; x++) {
+        for (int y = 0; y < Board.SIZE; y++) {
+          for (int x = 0; x < Board.SIZE; x++) {
             coordinates.add(new Tuple(x,y));
           }
         }
         break;
       case DOWN:
-        for (int y = 0; y < Board.size; y++) {
-          for (int x = Board.size - 1; x >= 0; x--) {
+        for (int y = 0; y < Board.SIZE; y++) {
+          for (int x = Board.SIZE - 1; x >= 0; x--) {
             coordinates.add(new Tuple(x,y));
           }
         }

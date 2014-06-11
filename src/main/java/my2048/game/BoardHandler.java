@@ -66,10 +66,10 @@ public class BoardHandler {
     int score = 0;
     boolean changed = false;
 
-    for (int i = 0; i < Board.size; i++) {
+    for (int i = 0; i < Board.SIZE; i++) {
       List<Cell> row = new ArrayList<>();
-      for (int j = 0; j < Board.size; j++) {
-        Tuple t = coordinates.get(i * Board.size + j);
+      for (int j = 0; j < Board.SIZE; j++) {
+        Tuple t = coordinates.get(i * Board.SIZE + j);
         row.add(board.get(t.x, t.y));
       }
 
@@ -78,8 +78,8 @@ public class BoardHandler {
       score += rowChange.getScore();
       changed |= rowChange.isChanged();
 
-      for (int j = 0; j < Board.size; j++) {
-        Tuple t = coordinates.get(i * Board.size + j);
+      for (int j = 0; j < Board.SIZE; j++) {
+        Tuple t = coordinates.get(i * Board.SIZE + j);
         newBoard.set(t.x, t.y, newRow.get(j));
       }
     }
@@ -132,7 +132,7 @@ public class BoardHandler {
   }
 
   private void fillUp(List<Cell> row) {
-    int fillUp = Board.size - row.size();
+    int fillUp = Board.SIZE - row.size();
     for (int i = 0; i < fillUp; i++) {
       row.add(CellFactory.getCell(0));
     }
@@ -142,8 +142,8 @@ public class BoardHandler {
 
     List<Tuple> emptyFields = new ArrayList<>();
 
-    for (int x = 0; x < Board.size; x++) {
-      for (int y = 0; y < Board.size; y++) {
+    for (int x = 0; x < Board.SIZE; x++) {
+      for (int y = 0; y < Board.SIZE; y++) {
         Cell cell = board.get(x, y);
         if (cell.getValue() == 0) {
           emptyFields.add(new Tuple(x, y));

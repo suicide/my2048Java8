@@ -30,9 +30,9 @@ public class Renderer {
     String separator = "-------------------------------------";
     System.out.println(separator);
 
-    for (int x = 0; x < Board.size; x++) {
-      Integer[] row = new Integer[Board.size];
-      for (int y = 0; y < Board.size; y++) {
+    for (int x = 0; x < Board.SIZE; x++) {
+      Integer[] row = new Integer[Board.SIZE];
+      for (int y = 0; y < Board.SIZE; y++) {
 
         row[y] = board.get(x, y).getValue();
 

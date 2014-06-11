@@ -45,7 +45,7 @@ public class BoardHandlerTest {
   @Test
   public void testLineMoveEmpty() throws Exception {
 
-    List<Cell> row = IntStream.range(0, Board.size)
+    List<Cell> row = IntStream.range(0, Board.SIZE)
       .collect(ArrayList::new, (list, i) -> list.add(CellFactory.getCell(0)), ArrayList::addAll);
 
     BoardHandler.RowChange result = boardHandler.lineMove(row);

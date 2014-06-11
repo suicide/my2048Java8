@@ -29,13 +29,13 @@ public class Board {
 
   private final List<Cell> board;
 
-  public static final int size = 4;
+  public static final int SIZE = 4;
 
   public Board() {
 
-    board = new ArrayList<>(size * size);
+    board = new ArrayList<>(SIZE * SIZE);
 
-    IntStream.range(0, size * size).forEach(i -> {
+    IntStream.range(0, SIZE * SIZE).forEach(i -> {
       board.add(CellFactory.getCell(0));
     });
 
@@ -43,22 +43,22 @@ public class Board {
 
   public Cell get(int x, int y) {
     check(x, y);
-    return board.get(x*size + y);
+    return board.get(x* SIZE + y);
   }
 
   public void set(int x, int y, Cell cell) {
     check(x, y);
 
-    board.set(x * size + y, cell);
+    board.set(x * SIZE + y, cell);
   }
 
   private void check(int x, int y) {
 
-    if (x >= size || x < 0) {
+    if (x >= SIZE || x < 0) {
       throw new IllegalArgumentException("x is out of bounds " + x);
     }
 
-    if (y >= size || y < 0) {
+    if (y >= SIZE || y < 0) {
       throw new IllegalArgumentException("y is out of bounds " + y);
     }
   }
